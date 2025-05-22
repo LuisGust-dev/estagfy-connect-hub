@@ -154,7 +154,7 @@ const StudentDashboard = () => {
                         <SelectValue placeholder="Área" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">Todas as Áreas</SelectItem>
+                        <SelectItem value="all">Todas as Áreas</SelectItem>
                         <SelectItem value="Tecnologia">Tecnologia</SelectItem>
                         <SelectItem value="Marketing">Marketing</SelectItem>
                         <SelectItem value="Administração">Administração</SelectItem>
@@ -167,7 +167,7 @@ const StudentDashboard = () => {
                         <SelectValue placeholder="Localidade" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">Todas as Localidades</SelectItem>
+                        <SelectItem value="all">Todas as Localidades</SelectItem>
                         <SelectItem value="São Paulo">São Paulo</SelectItem>
                         <SelectItem value="Rio de Janeiro">Rio de Janeiro</SelectItem>
                         <SelectItem value="Belo Horizonte">Belo Horizonte</SelectItem>
@@ -180,7 +180,7 @@ const StudentDashboard = () => {
                         <SelectValue placeholder="Tipo" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">Todos os Tipos</SelectItem>
+                        <SelectItem value="all">Todos os Tipos</SelectItem>
                         <SelectItem value="Remoto">Remoto</SelectItem>
                         <SelectItem value="Presencial">Presencial</SelectItem>
                         <SelectItem value="Híbrido">Híbrido</SelectItem>
