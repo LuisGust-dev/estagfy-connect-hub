@@ -1,13 +1,16 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 interface NavbarProps {
   isLoggedIn?: boolean;
   userType?: "student" | "company";
 }
 
-const Navbar = ({ isLoggedIn = false, userType }: NavbarProps) => {
+const Navbar = ({ isLoggedIn: propIsLoggedIn, userType }: NavbarProps) => {
+  const { user } = useAuth();
+  const isLoggedIn = propIsLoggedIn || !!user;
   return (
     <nav className="bg-white shadow-sm py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -18,11 +21,8 @@ const Navbar = ({ isLoggedIn = false, userType }: NavbarProps) => {
         <div className="hidden md:flex items-center space-x-4">
           {!isLoggedIn ? (
             <>
-              <Button variant="outline" asChild>
-                <Link to="/login">Login</Link>
-              </Button>
               <Button asChild>
-                <Link to="/register">Cadastre-se</Link>
+                <Link to="/auth">Entrar / Cadastrar</Link>
               </Button>
             </>
           ) : (

@@ -3,12 +3,31 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useAuth } from "@/hooks/useAuth";
+import { Navigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const Index = () => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div>Carregando...</div>
+      </div>
+    );
+  }
+
+  // Redirect authenticated users to their respective dashboards
+  if (user) {
+    // We'll need to get user type from the database
+    // For now, let's redirect to a generic dashboard
+    return <Navigate to="/student/dashboard" replace />;
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar isLoggedIn={!!user} />
 
       {/* Hero Section */}
       <div className="hero-gradient py-20 md:py-32">
@@ -23,10 +42,10 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" asChild className="bg-white text-estagfy-700 hover:bg-gray-100">
-                <Link to="/login">Login</Link>
+                <Link to="/auth">Entrar</Link>
               </Button>
               <Button size="lg" asChild className="bg-estagfy-500 hover:bg-estagfy-600 text-white">
-                <Link to="/register">Cadastre-se <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Link to="/auth">Cadastre-se <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
           </div>
@@ -113,7 +132,7 @@ const Index = () => {
               Junte-se a milhares de estudantes e empresas que já estão utilizando o EstagFy.
             </p>
             <Button size="lg" asChild>
-              <Link to="/register">Cadastre-se gratuitamente</Link>
+              <Link to="/auth">Cadastre-se gratuitamente</Link>
             </Button>
           </div>
         </div>

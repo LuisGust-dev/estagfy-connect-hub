@@ -7,8 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import Index from "./pages/Index";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Auth from "./pages/Auth";
+import Logout from "./pages/Logout";
+import ProtectedRoute from "./components/ProtectedRoute";
 import StudentDashboard from "./pages/student/Dashboard";
 import StudentCalendar from "./pages/student/Calendar";
 import StudentProfile from "./pages/student/Profile";
@@ -29,16 +30,16 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/student/dashboard" element={<StudentDashboard />} />
-          <Route path="/student/calendar" element={<StudentCalendar />} />
-          <Route path="/student/profile" element={<StudentProfile />} />
-          <Route path="/chat/:id" element={<ChatPage />} />
-          <Route path="/company/dashboard" element={<CompanyDashboard />} />
-          <Route path="/company/profile" element={<CompanyProfile />} />
-          <Route path="/company/internships/:id/applicants" element={<InternshipApplicants />} />
-          <Route path="/company/internships/:id/edit" element={<EditInternship />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/student/dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
+          <Route path="/student/calendar" element={<ProtectedRoute><StudentCalendar /></ProtectedRoute>} />
+          <Route path="/student/profile" element={<ProtectedRoute><StudentProfile /></ProtectedRoute>} />
+          <Route path="/chat/:id" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+          <Route path="/company/dashboard" element={<ProtectedRoute><CompanyDashboard /></ProtectedRoute>} />
+          <Route path="/company/profile" element={<ProtectedRoute><CompanyProfile /></ProtectedRoute>} />
+          <Route path="/company/internships/:id/applicants" element={<ProtectedRoute><InternshipApplicants /></ProtectedRoute>} />
+          <Route path="/company/internships/:id/edit" element={<ProtectedRoute><EditInternship /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
